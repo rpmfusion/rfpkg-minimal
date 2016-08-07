@@ -1,5 +1,5 @@
 Name:           rfpkg-minimal
-Version:        0.1.1
+Version:        0.2.0
 Release:        1%{?dist}
 Summary:        Fork of fedpkg-minimal for RPM Fusion
 
@@ -8,8 +8,8 @@ Summary:        Fork of fedpkg-minimal for RPM Fusion
 # See https://fedorahosted.org/fedpkg-minimal/ticket/2
 License:        GPLv2
 
-URL:            https://github.com/TC01/rfpkg-minimal
-Source0:        https://github.com/TC01/rfpkg-minimal/archive/0.1.1.tar.gz#/rfpkg-minimal-0.1.1.tar.gz
+URL:            https://github.com/rpmfusion-infra/rfpkg-minimal
+Source0:        https://github.com/rpmfusion-infra/rfpkg-minimal/archive/%{version}.tar.gz#/rfpkg-minimal-%{version}.tar.gz
 
 BuildArch:      noarch
 
@@ -37,6 +37,10 @@ install -pm 755 bin/rfpkg-minimal %{buildroot}%{_bindir}/rfpkg-minimal
 %license LICENSE
 
 %changelog
+* Sun Aug  7 2016 Ben Rosser <rosser.bjr@gmail.com> 0.2.0-1
+- Update to 0.2.0, with support for non-MD5 hashes
+- Change upstream URL to point at rpmfusion-infra repo
+
 * Sat Jul  9 2016 Ben Rosser <rosser.bjr@gmail.com> 0.1.1-1
 - Rename rfpkg to rfpkg-minimal, remove conflict with fedpkg
 - Add comment with link to upstream bug about licensing
