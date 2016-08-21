@@ -1,5 +1,5 @@
 Name:           rfpkg-minimal
-Version:        0.2.0
+Version:        0.2.1
 Release:        1%{?dist}
 Summary:        Fork of fedpkg-minimal for RPM Fusion
 
@@ -37,6 +37,11 @@ install -pm 755 bin/rfpkg-minimal %{buildroot}%{_bindir}/rfpkg-minimal
 %license LICENSE
 
 %changelog
+* Sat Aug 20 2016 Ben Rosser <rosser.bjr@gmail.com> 0.2.1-1
+- Update to 0.2.1.
+- If downloading MD5-summed file fails, we fall back to using the old style URLs.
+- This should fix builds of packages with older sources files.
+
 * Sun Aug  7 2016 Ben Rosser <rosser.bjr@gmail.com> 0.2.0-1
 - Update to 0.2.0, with support for non-MD5 hashes
 - Change upstream URL to point at rpmfusion-infra repo
