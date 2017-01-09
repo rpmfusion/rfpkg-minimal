@@ -1,6 +1,6 @@
 Name:           rfpkg-minimal
 Version:        0.2.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Fork of fedpkg-minimal for RPM Fusion
 
 # Licensing is unclear; LICENSE is the GPLv2 but bin/fedpkg (upstream)
@@ -37,6 +37,9 @@ install -pm 755 bin/rfpkg-minimal %{buildroot}%{_bindir}/rfpkg-minimal
 %license LICENSE
 
 %changelog
+* Mon Jan 09 2017 Xavier Bachelot <xavier@bachelot.org> 0.2.2-2
+- Bump release tag.
+
 * Tue Aug 23 2016 Ben Rosser <rosser.bjr@gmail.com> 0.2.2-1
 - Update to 0.2.2, with a fix for EL6 and EL5
 - The generated checksum lines now use two spaces as a delimiter, not just one.
