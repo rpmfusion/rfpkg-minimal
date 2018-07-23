@@ -1,6 +1,6 @@
 Name:           rfpkg-minimal
 Version:        0.2.2
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Fork of fedpkg-minimal for RPM Fusion
 
 # Licensing is unclear; LICENSE is the GPLv2 but bin/fedpkg (upstream)
@@ -9,7 +9,7 @@ Summary:        Fork of fedpkg-minimal for RPM Fusion
 License:        GPLv2
 
 URL:            https://github.com/rpmfusion-infra/rfpkg-minimal
-Source0:        https://github.com/rpmfusion-infra/rfpkg-minimal/archive/%{version}.tar.gz#/rfpkg-minimal-%{version}.tar.gz
+Source0:        %{url}/archive/%{version}.tar.gz#/rfpkg-minimal-%{version}.tar.gz
 
 BuildArch:      noarch
 
@@ -37,6 +37,9 @@ install -pm 755 bin/rfpkg-minimal %{buildroot}%{_bindir}/rfpkg-minimal
 %license LICENSE
 
 %changelog
+* Mon Jul 23 2018 Nicolas Chauvet <kwizart@gmail.com> - 0.2.2-3
+- Switch to %%{url} macro
+
 * Mon Jan 09 2017 Xavier Bachelot <xavier@bachelot.org> 0.2.2-2
 - Bump release tag.
 
