@@ -1,6 +1,6 @@
 Name:           rfpkg-minimal
-Version:        0.2.2
-Release:        3%{?dist}
+Version:        0.3.0
+Release:        1%{?dist}
 Summary:        Fork of fedpkg-minimal for RPM Fusion
 
 # Licensing is unclear; LICENSE is the GPLv2 but bin/fedpkg (upstream)
@@ -14,7 +14,10 @@ Source0:        %{url}/archive/%{version}.tar.gz#/rfpkg-minimal-%{version}.tar.g
 BuildArch:      noarch
 
 # The script needs curl, just like fedpkg-minimal.
+# It also needs coreutils (cut) and sed. Not sure if this must be listed.
+Requires:       coreutils
 Requires:       curl
+Requires:       sed
 
 %description
 rfpkg-minimal contains a script for use in RPM Fusion's Koji instance
@@ -37,6 +40,9 @@ install -pm 755 bin/rfpkg-minimal %{buildroot}%{_bindir}/rfpkg-minimal
 %license LICENSE
 
 %changelog
+* Thu Nov 08 2018 Ben Rosser <rosser.bjr@gmail.com> - 0.3.0-1
+- Support arbitrary namespaces by extracting them from git config.
+
 * Mon Jul 23 2018 Nicolas Chauvet <kwizart@gmail.com> - 0.2.2-3
 - Switch to %%{url} macro
 
