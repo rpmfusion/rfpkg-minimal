@@ -1,5 +1,5 @@
 Name:           rfpkg-minimal
-Version:        0.3.0
+Version:        0.3.1
 Release:        1%{?dist}
 Summary:        Fork of fedpkg-minimal for RPM Fusion
 
@@ -40,6 +40,9 @@ install -pm 755 bin/rfpkg-minimal %{buildroot}%{_bindir}/rfpkg-minimal
 %license LICENSE
 
 %changelog
+* Fri Nov 16 2018 Ben Rosser <rosser.bjr@gmail.com> - 0.3.1-1
+- Fix some packages not downloading due to over-broad 'sed' command.
+
 * Thu Nov 08 2018 Ben Rosser <rosser.bjr@gmail.com> - 0.3.0-1
 - Support arbitrary namespaces by extracting them from git config.
 
