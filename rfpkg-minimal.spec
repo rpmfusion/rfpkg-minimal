@@ -1,5 +1,5 @@
 Name:           rfpkg-minimal
-Version:        0.4.0
+Version:        0.4.1
 Release:        1%{?dist}
 Summary:        Fork of fedpkg-minimal for RPM Fusion
 
@@ -41,6 +41,9 @@ install -pm 755 bin/rfpkg-minimal %{buildroot}%{_bindir}/rfpkg-minimal
 %license LICENSE
 
 %changelog
+* Fri Aug 23 2019 Nicolas Chauvet <kwizart@gmail.com> - 0.4.1-1
+- Update to 0.4.1
+
 * Fri Aug 23 2019 Nicolas Chauvet <kwizart@gmail.com> - 0.4.0-1
 - Update to 0.4.0
 
