@@ -1,5 +1,5 @@
 Name:           rfpkg-minimal
-Version:        0.3.1
+Version:        0.4.0
 Release:        1%{?dist}
 Summary:        Fork of fedpkg-minimal for RPM Fusion
 
@@ -15,6 +15,7 @@ BuildArch:      noarch
 
 # The script needs curl, just like fedpkg-minimal.
 # It also needs coreutils (cut) and sed. Not sure if this must be listed.
+Requires:       fedpkg-minimal > 1.1
 Requires:       coreutils
 Requires:       curl
 Requires:       sed
@@ -40,6 +41,9 @@ install -pm 755 bin/rfpkg-minimal %{buildroot}%{_bindir}/rfpkg-minimal
 %license LICENSE
 
 %changelog
+* Fri Aug 23 2019 Nicolas Chauvet <kwizart@gmail.com> - 0.4.0-1
+- Update to 0.4.0
+
 * Fri Nov 16 2018 Ben Rosser <rosser.bjr@gmail.com> - 0.3.1-1
 - Fix some packages not downloading due to over-broad 'sed' command.
 
