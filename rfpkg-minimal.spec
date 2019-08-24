@@ -1,6 +1,6 @@
 Name:           rfpkg-minimal
 Version:        0.4.1
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Fork of fedpkg-minimal for RPM Fusion
 
 # Licensing is unclear; LICENSE is the GPLv2 but bin/fedpkg (upstream)
@@ -9,14 +9,13 @@ Summary:        Fork of fedpkg-minimal for RPM Fusion
 License:        GPLv2
 
 URL:            https://github.com/rpmfusion-infra/rfpkg-minimal
-Source0:        %{url}/archive/%{version}.tar.gz#/rfpkg-minimal-%{version}.tar.gz
-Patch0:         add-fedpkg-base-to-rfpkg-minimal.patch
+Source0:        %{url}/archive/%{version}/rfpkg-minimal-%{version}.tar.gz
+Patch0:         %{url}/pull/2.patch#/add-fedpkg-base-to-rfpkg-minimal.patch
 
 BuildArch:      noarch
 
 # The script needs curl, just like fedpkg-minimal.
 # It also needs coreutils (cut) and sed. Not sure if this must be listed.
-Requires:       fedpkg-minimal > 1.1
 Requires:       coreutils
 Requires:       curl
 Requires:       sed
@@ -34,14 +33,19 @@ fedpkg-minimal.
 
 %install
 mkdir -p %{buildroot}%{_bindir}
+install -pm 755 bin/rfpkg-base %{buildroot}%{_bindir}/rfpkg-base
 install -pm 755 bin/rfpkg-minimal %{buildroot}%{_bindir}/rfpkg-minimal
 
 %files
+%{_bindir}/rfpkg-base
 %{_bindir}/rfpkg-minimal
 %doc README.md AUTHORS.md
 %license LICENSE
 
 %changelog
+* Sat Aug 24 2019 Leigh Scott <leigh123linux@googlemail.com> - 0.4.1-3
+- Use pull request instead
+
 * Sat Aug 24 2019 Leigh Scott <leigh123linux@googlemail.com> - 0.4.1-2
 - Combine fedpkg-base to match fedpkg-minimal
 
