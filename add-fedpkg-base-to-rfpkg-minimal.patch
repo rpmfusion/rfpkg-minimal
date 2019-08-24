@@ -1,0 +1,53 @@
+From 5de09953819053aee8879b29223da82836557a12 Mon Sep 17 00:00:00 2001
+From: Leigh Scott <leigh123linux@googlemail.com>
+Date: Sat, 24 Aug 2019 01:08:16 +0100
+Subject: [PATCH] add fedpkg-base to rfpkg-minimal
+
+---
+ bin/rfpkg-minimal | 31 ++++++++++++++++++++++++++++---
+ 1 file changed, 28 insertions(+), 3 deletions(-)
+
+diff --git a/bin/rfpkg-minimal b/bin/rfpkg-minimal
+index 4697a71..a8083c1 100755
+--- a/bin/rfpkg-minimal
++++ b/bin/rfpkg-minimal
+@@ -20,8 +20,33 @@
+ # Abort on errors
+ set -e
+ 
+-#url=$(git remote get-url origin)
+-#url=$(git remote -v |grep origin | head -1 | awk '{print $2}')
+ url=$(cat .git/config |awk '/url/ {print $3}')
+ namespace=$(echo ${url} | awk -F '/' '{print $(NF-1)}')
+-baseurl=https://pkgs.rpmfusion.org/repo/pkgs/${namespace} fedpkg-base $@
++baseurl=https://pkgs.rpmfusion.org/repo/pkgs/${namespace}
++
++pkgname=$(basename "$PWD")
++if [[ -s sources ]]; then
++    # Read first word of first line. For old MD5 format it's the 32 character
++    # hash. Otherwise let's assume the sources have the BSD format where lines
++    # start with hash type.
++    hashtype="$(head -n1 sources | cut -d' ' -f1 | tr '[:upper:]' '[:lower:]')"
++    if [ "${#hashtype}" -ne 32 ]; then
++        # The format is
++        #   SHA512 (filename) = ABCDEF
++        # We don't care about the equals sign. We also assume all hashes are
++        # the same type, so we don't need to read it again for each line.
++        while read -r _ filename _ hash; do
++            # Remove parenthesis around tarball name
++	    filename=${filename#(}
++	    tarball=${filename%)}
++            curl -L -H Pragma: -o "./$tarball" -R -S --fail --retry 5 --max-time 15 "$baseurl/$pkgname/$tarball/$hashtype/$hash/$tarball"
++        done < sources
++        "${hashtype}sum" -c sources
++    else
++        # Ok, we're working with MD5.
++        while read -r md5sum tarball; do
++            curl -L -H Pragma: -o "./$tarball" -R -S --fail --retry 5 --max-time 15 "$baseurl/$pkgname/$tarball/$md5sum/$tarball"
++        done < sources
++        md5sum -c sources
++    fi
++fi
+-- 
+2.21.0
+
