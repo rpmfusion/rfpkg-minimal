@@ -50,13 +50,13 @@ index 0000000..87d90e8
 +            # Remove parenthesis around tarball name
 +	    filename=${filename#(}
 +	    tarball=${filename%)}
-+            curl -L -H Pragma: -o "./$tarball" -R -S --fail --retry 5 --max-time 15 "$baseurl/$pkgname/$tarball/$hashtype/$hash/$tarball"
++            curl -L -H Pragma: -o "./$tarball" -R -S --fail --retry 5 --max-time 900 "$baseurl/$pkgname/$tarball/$hashtype/$hash/$tarball"
 +        done < sources
 +        "${hashtype}sum" -c sources
 +    else
 +        # Ok, we're working with MD5.
 +        while read -r md5sum tarball; do
-+            curl -L -H Pragma: -o "./$tarball" -R -S --fail --retry 5 --max-time 15 "$baseurl/$pkgname/$tarball/$md5sum/$tarball"
++            curl -L -H Pragma: -o "./$tarball" -R -S --fail --retry 5 --max-time 900 "$baseurl/$pkgname/$tarball/$md5sum/$tarball"
 +        done < sources
 +        md5sum -c sources
 +    fi

@@ -1,6 +1,6 @@
 Name:           rfpkg-minimal
 Version:        0.4.1
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Fork of fedpkg-minimal for RPM Fusion
 
 # Licensing is unclear; LICENSE is the GPLv2 but bin/fedpkg (upstream)
@@ -43,6 +43,9 @@ install -pm 755 bin/rfpkg-minimal %{buildroot}%{_bindir}/rfpkg-minimal
 %license LICENSE
 
 %changelog
+* Fri Oct 22 2021 Leigh Scott <leigh123linux@gmail.com> - 0.4.1-4
+- Increase timeout to 900 seconds
+
 * Sat Aug 24 2019 Leigh Scott <leigh123linux@googlemail.com> - 0.4.1-3
 - Use pull request instead
 
