@@ -1,6 +1,6 @@
 Name:           rfpkg-minimal
 Version:        0.4.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Fork of fedpkg-minimal for RPM Fusion
 
 # Licensing is unclear; LICENSE is the GPLv2 but bin/fedpkg (upstream)
@@ -42,6 +42,9 @@ install -pm 755 bin/rfpkg-minimal %{buildroot}%{_bindir}/rfpkg-minimal
 %license LICENSE
 
 %changelog
+* Sun Feb 19 2023 Leigh Scott <leigh123linux@gmail.com> - 0.4.2-2
+- rebuilt
+
 * Fri Oct 22 2021 Leigh Scott <leigh123linux@gmail.com> - 0.4.2-1
 - Update to 0.4.2
 
